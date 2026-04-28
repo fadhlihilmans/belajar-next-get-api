@@ -1,4 +1,4 @@
-export interface Dokter {
+export interface Pasien {
   id: number;
   nomor_rm: string;
   nama_pasien: string;

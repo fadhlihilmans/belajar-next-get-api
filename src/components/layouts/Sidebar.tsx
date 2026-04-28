@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Home, Users, ArrowLeft } from "lucide-react"
+import { Home, Users, ArrowLeft, Building, Hospital } from "lucide-react"
 
 export default function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (val: boolean) => void }) {
   const pathname = usePathname()
@@ -32,11 +32,11 @@ export default function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsO
                 Data Pasien
               </Link>
               <Link href="/poli" className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg ${pathname === '/poli' ? 'text-white bg-gray-900' : 'hover:bg-gray-50'}`}>
-                <Users className="w-4 h-4 mr-3" />
+                <Building className="w-4 h-4 mr-3" />
                 Data Poli
               </Link>
               <Link href="/dokter" className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg ${pathname === '/dokter' ? 'text-white bg-gray-900' : 'hover:bg-gray-50'}`}>
-                <Users className="w-4 h-4 mr-3" />
+                <Hospital className="w-4 h-4 mr-3" />
                 Data Dokter
               </Link>
             </div>
