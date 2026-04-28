@@ -27,17 +27,21 @@ export default function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsO
                 <Home className="w-4 h-4 mr-3" />
                 Dashboard
               </Link>
-              <Link href="/pasien" className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg ${pathname === '/pasien' ? 'text-white bg-gray-900' : 'hover:bg-gray-50'}`}>
+              <Link href="/pasien" className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg ${pathname === '/pasien' || pathname.startsWith('/pasien/') ? 'text-white bg-gray-900' : 'hover:bg-gray-50'}`}>
                 <Users className="w-4 h-4 mr-3" />
                 Data Pasien
               </Link>
-              <Link href="/poli" className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg ${pathname === '/poli' ? 'text-white bg-gray-900' : 'hover:bg-gray-50'}`}>
+              <Link href="/poli" className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg ${pathname === '/poli' || pathname.startsWith('/poli/') ? 'text-white bg-gray-900' : 'hover:bg-gray-50'}`}>
                 <Building className="w-4 h-4 mr-3" />
                 Data Poli
               </Link>
-              <Link href="/dokter" className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg ${pathname === '/dokter' ? 'text-white bg-gray-900' : 'hover:bg-gray-50'}`}>
+              <Link href="/dokter" className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg ${pathname === '/dokter' || pathname.startsWith('/dokter/') ? 'text-white bg-gray-900' : 'hover:bg-gray-50'}`}>
                 <Hospital className="w-4 h-4 mr-3" />
                 Data Dokter
+              </Link>
+              <Link href="/pendaftaran" className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg ${pathname === '/pendaftaran' || pathname.startsWith('/pendaftaran/') ? 'text-white bg-gray-900' : 'hover:bg-gray-50'}`}>
+                <Hospital className="w-4 h-4 mr-3" />
+                Pendaftaran
               </Link>
             </div>
           </nav>

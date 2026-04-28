@@ -155,7 +155,10 @@ export default function PasienPage() {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{index + 1}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.nama_pasien}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.nomor_rm}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.alamat}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {item.alamat.length > 50 ? `${item.alamat.substring(0, 50)}...` : item.alamat}
+                      </td>
+                      
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex-items-center">
                         <Link href={`/pasien/${item.id}`} className="inline-flex items-center justify-center text-blue-500 hover:text-blue-700 p-1 mr-2 bg-white border border-gray-200 rounded">
                           <Eye className="w-4 h-4" />

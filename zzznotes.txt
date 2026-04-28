@@ -1,1 +1,3 @@
-sidebar 
+validasi realtime
+perhitungan
+angka += 1 tiap nomor

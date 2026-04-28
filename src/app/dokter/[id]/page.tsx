@@ -30,7 +30,7 @@ export default async function DetailDokterPage({ params }: { params: { id: strin
         <h2 className="text-2xl font-semibold text-gray-900">Detail Dokter</h2>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-xl overflow-hidden max-w-2xl">
+      <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
         <div className="p-6 border-b border-gray-200 bg-gray-50 flex items-center space-x-3">
           <div className="p-3 bg-blue-100 text-blue-600 rounded-lg">
             <BriefcaseMedical className="w-6 h-6" />

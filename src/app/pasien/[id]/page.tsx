@@ -30,7 +30,7 @@ export default async function DetailPasienPage({ params }: { params: { id: strin
         <h2 className="text-2xl font-semibold text-gray-900">Detail Pasien</h2>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-xl overflow-hidden max-w-2xl">
+      <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
         <div className="p-6 border-b border-gray-200 bg-gray-50 flex items-center space-x-3">
           <div className="p-3 bg-blue-100 text-blue-600 rounded-lg">
             <Building2 className="w-6 h-6" />
@@ -52,6 +52,12 @@ export default async function DetailPasienPage({ params }: { params: { id: strin
             </div>
           </div>
 
+          <div>
+            <p className="text-sm font-medium text-gray-500">Alamat</p>
+            <p className="text-sm text-gray-900 mt-1">
+              {data.alamat}
+            </p>
+          </div>
           <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-100">
             <div>
               <p className="text-sm font-medium text-gray-500">Dibuat Pada</p>
