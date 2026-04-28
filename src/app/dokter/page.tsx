@@ -5,22 +5,22 @@ import { Plus, Pencil, Trash2, Search, Loader2, AlertOctagon, X, Eye } from "luc
 import Button from "@/components/ui/Button"
 import Input from "@/components/ui/Input"
 import Modal from "@/components/ui/Modal"
-import { Poli } from "@/types/poli"
+import { Dokter } from "@/types/dokter"
 import Link from "next/link"
 
-export default function PoliPage() {
-  const [data, setData] = useState<Poli[]>([])
+export default function DokterPage() {
+  const [data, setData] = useState<Dokter[]>([])
   const [search, setSearch] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
   const [selectedId, setSelectedId] = useState<number | null>(null)
-  const [formData, setFormData] = useState({ nama_poli: "", kuota: "" })
+  const [formData, setFormData] = useState({ nama_dokter: "" })
 
   const fetchData = async () => {
     setIsLoading(true)
     try {
-      const res = await fetch("http://localhost:8000/api/poli")
+      const res = await fetch("http://localhost:8000/api/dokter")
       const json = await res.json()
       if (json.success) setData(json.data)
       console.log(res)
@@ -39,7 +39,7 @@ export default function PoliPage() {
     e.preventDefault()
     setIsLoading(true)
     try {
-      const url = selectedId ? `http://localhost:8000/api/poli/${selectedId}` : "http://localhost:8000/api/poli"
+      const url = selectedId ? `http://localhost:8000/api/dokter/${selectedId}` : "http://localhost:8000/api/dokter"
       const method = selectedId ? "PUT" : "POST"
       
       const res = await fetch(url, {
@@ -48,7 +48,7 @@ export default function PoliPage() {
           "Content-Type": "application/json",
           "Accept": "application/json", 
         },
-        body: JSON.stringify({ nama_poli: formData.nama_poli, kuota: Number(formData.kuota) })
+        body: JSON.stringify({ nama_dokter: formData.nama_dokter })
       })
       const resText = await res.text();
       console.log("Respon dari Laravel:", resText);
@@ -56,7 +56,7 @@ export default function PoliPage() {
       // const json = await res.json()
       if (json.success) {
         setIsModalOpen(false)
-        setFormData({ nama_poli: "", kuota: "" })
+        setFormData({ nama_dokter: ""})
         setSelectedId(null)
         fetchData()
       }
@@ -71,7 +71,7 @@ export default function PoliPage() {
     if (!selectedId) return
     setIsLoading(true)
     try {
-      const res = await fetch(`http://localhost:8000/api/poli/${selectedId}`, { method: "DELETE" })
+      const res = await fetch(`http://localhost:8000/api/dokter/${selectedId}`, { method: "DELETE" })
       const json = await res.json()
       if (json.success) {
         setIsDeleteOpen(false)
@@ -85,9 +85,9 @@ export default function PoliPage() {
     }
   }
 
-  const openEdit = (poli: Poli) => {
-    setSelectedId(poli.id)
-    setFormData({ nama_poli: poli.nama_poli, kuota: poli.kuota.toString() })
+  const openEdit = (dokter: Dokter) => {
+    setSelectedId(dokter.id)
+    setFormData({ nama_dokter: dokter.nama_dokter })
     setIsModalOpen(true)
   }
 
@@ -96,17 +96,17 @@ export default function PoliPage() {
     setIsDeleteOpen(true)
   }
 
-  const filteredData = data.filter(item => item.nama_poli.toLowerCase().includes(search.toLowerCase()))
+  const filteredData = data.filter(item => item.nama_dokter.toLowerCase().includes(search.toLowerCase()))
 
   return (
     <div className="space-y-6">
       <div className="bg-white border border-gray-200 rounded-lg">
         <div className="p-6 border-b border-gray-200">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
-            <h3 className="text-lg font-semibold">Data Poli</h3>
+            <h3 className="text-lg font-semibold">Data Dokter</h3>
             <Button onClick={() => {
               setSelectedId(null)
-              setFormData({ nama_poli: "", kuota: "" })
+              setFormData({ nama_dokter: "" })
               setIsModalOpen(true)
             }}>
               <Plus className="w-4 h-4 mr-2" />
@@ -141,7 +141,7 @@ export default function PoliPage() {
               <thead className="bg-gray-50">
                 <tr>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Poli</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Dokter</th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kuota</th>
                   <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Opsi</th>
                 </tr>
@@ -151,10 +151,9 @@ export default function PoliPage() {
                   filteredData.map((item, index) => (
                     <tr key={item.id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{index + 1}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.nama_poli}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.kuota}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.nama_dokter}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex-items-center">
-                        <Link href={`/poli/${item.id}`} className="inline-flex items-center justify-center text-blue-500 hover:text-blue-700 p-1 mr-2 bg-white border border-gray-200 rounded">
+                        <Link href={`/dokter/${item.id}`} className="inline-flex items-center justify-center text-blue-500 hover:text-blue-700 p-1 mr-2 bg-white border border-gray-200 rounded">
                           <Eye className="w-4 h-4" />
                         </Link>
                         <button onClick={() => openEdit(item)} className="inline-flex items-center justify-center text-gray-500 hover:text-gray-900 p-1 mr-2 bg-white border border-gray-200 rounded">
@@ -179,25 +178,17 @@ export default function PoliPage() {
         </div>
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title={selectedId ? "Edit Data Poli" : "Tambah Data Poli"}>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title={selectedId ? "Edit Data Dokter" : "Tambah Data Dokter"}>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium mb-1">Nama Poli</label>
+            <label className="block text-sm font-medium mb-1">Nama Dokter</label>
             <Input 
               required 
-              value={formData.nama_poli} 
-              onChange={(e) => setFormData({...formData, nama_poli: e.target.value})} 
+              value={formData.nama_dokter} 
+              onChange={(e) => setFormData({...formData, nama_dokter: e.target.value})} 
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Kuota</label>
-            <Input 
-              type="number" 
-              required 
-              min="1" 
-              value={formData.kuota} 
-              onChange={(e) => setFormData({...formData, kuota: e.target.value})} 
-            />
           </div>
           <div className="flex justify-end space-x-3 pt-6">
             <Button type="button" variant="outline" onClick={() => setIsModalOpen(false)}>

@@ -13,7 +13,7 @@ export default function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsO
         <div className="p-6">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-2">
-              <span className="text-xl font-semibold">App Name</span>
+              <span className="text-xl font-semibold">TEST</span>
             </div>
             <button onClick={() => setIsOpen(false)} className="lg:hidden p-2 rounded-lg hover:bg-gray-50">
               <ArrowLeft className="w-5 h-5" />
@@ -27,9 +27,17 @@ export default function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsO
                 <Home className="w-4 h-4 mr-3" />
                 Dashboard
               </Link>
+              <Link href="/pasien" className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg ${pathname === '/pasien' ? 'text-white bg-gray-900' : 'hover:bg-gray-50'}`}>
+                <Users className="w-4 h-4 mr-3" />
+                Data Pasien
+              </Link>
               <Link href="/poli" className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg ${pathname === '/poli' ? 'text-white bg-gray-900' : 'hover:bg-gray-50'}`}>
                 <Users className="w-4 h-4 mr-3" />
                 Data Poli
+              </Link>
+              <Link href="/dokter" className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg ${pathname === '/dokter' ? 'text-white bg-gray-900' : 'hover:bg-gray-50'}`}>
+                <Users className="w-4 h-4 mr-3" />
+                Data Dokter
               </Link>
             </div>
           </nav>
